@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Package Control Theme Scraper</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>📦 Package Control Theme Browser</h1>
+        <p>Sublime Text Themes sorted by popularity</p>
+      </div>
+
+      <div class="content">
+        <div class="instructions">
+          <h3>🔧 How to Use (CORS Workaround)</h3>
+          <ol>
+            <li>
+              Open
+              <a
+                href="https://packagecontrol.io/browse/labels/theme"
+                target="_blank"
+                style="color: #667eea; font-weight: 600"
+                >packagecontrol.io/browse/labels/theme</a
+              >
+              in a new tab
+            </li>
+            <li>
+              Press <code>Ctrl+U</code> (Windows/Linux) or
+              <code>Cmd+Option+U</code> (Mac) to view page source
+            </li>
+            <li>
+              Press <code>Ctrl+A</code> (or <code>Cmd+A</code>) to select all,
+              then <code>Ctrl+C</code> (or <code>Cmd+C</code>) to copy
+            </li>
+            <li>Paste the HTML into the box below</li>
+            <li>Click "Parse & Display Themes"</li>
+          </ol>
+        </div>
+
+        <div style="margin-bottom: 20px">
+          <textarea
+            class="paste-area"
+            id="htmlInput"
+            placeholder="Paste the HTML source code here..."
+          ></textarea>
+        </div>
+
+        <div
+          style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap"
+        >
+          <button class="btn" onclick="parseHTML()">
+            🔍 Parse & Display Themes
+          </button>
+          <input
+            type="text"
+            class="search-box"
+            id="searchBox"
+            placeholder="Search themes..."
+            oninput="filterThemes()"
+            style="flex: 1; min-width: 250px"
+          />
+          <button class="btn" onclick="exportData()">📥 Export JSON</button>
+        </div>
+
+        <div id="message" style="display: none"></div>
+
+        <div class="stats" id="stats" style="display: none">
+          <div class="stat-item">
+            <span class="stat-label">Total Themes</span>
+            <span class="stat-value" id="totalThemes">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Total Installs</span>
+            <span class="stat-value" id="totalInstalls">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Avg Installs</span>
+            <span class="stat-value" id="avgInstalls">0</span>
+          </div>
+        </div>
+
+        <div id="themeList" class="theme-grid"></div>
+      </div>
+    </div>
+
+    <script src="script.js" defer async></script>
+  </body>
+</html>
